@@ -4,28 +4,61 @@
 import random
 
 
-def get_number():
 
+
+
+
+
+def get_number():
+    """
+
+    :return: This returns a random number.
+    """
     k = random.randint(1, 100)
 
     return k
 
 
 def get_guess():
-    r = 0
-    while r<100:
-        k = input("Please pick a number between 1 and 100.")
-        print(k)
+    """
+
+    :return: This runs a while loop to make sure the number is between the given parameters and returns a guess from the user.
+    """
+    k = 0
+    while k > 100 or k <1:
+        k = int(input("Please pick a number between 1 and 100."))
+    return k
 
 
-   # for x in range(r < 100 and r > 1):
-       # r = int(input("Please guess a number between 1 and 100."))
-        #if r < 1 or r > 100:
-            #print("Please pick a number between 1 and 100.")
 
+def play(k):
+    """
 
+    :param k: The random number.
+    :return: This tells the user if their guess is too high or too low. It also adds the total number of tries.
+    """
+
+    tries = 0
+    while True:
+        t = get_guess()
+        tries += 1
+
+        if t == k:
+            print("You got it in " + str(tries) + " tries")
+            return tries
+
+        if t > k:
+            print("your guess is too high")
+        if k > t:
+            print(" your guess is too low")
 def main():
-    get_number()
-    get_guess()
+    total_guess= 0
+    for x in range(3):
+        k = get_number()
+        total_guess += play(k)
+    l = total_guess / 3
+    print("your average number of guesses was " + str(l), "Thank you for playing! Have a great day.")
+
+
 
 main()
